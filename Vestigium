@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+    {
+    int t,n,j,i;
+        cin>>t;
+        for(int m=1;m<=t;m++)
+        {
+            cin>>n;
+            int M[n][n],k=0,row=0;
+            for(i=0;i<n;i++)
+            {
+                bool F=false;
+                map<int,int> r;
+                for(j=0;j<n;j++)
+                {
+                cin>>M[i][j];
+                    if(i==j)
+                    k+=M[i][j];
+                    r[M[i][j]]++;
+                if(r[M[i][j]]!=1) 
+                F=true;;
+                }
+                if(F)
+                row++;
+            }
+            int col=0;
+            for(int i=0;i<n;i++)
+            {
+                bool F=false;
+                map<int,int> r;
+                for(int j=0;j<n;j++)
+                {
+                    r[M[j][i]]++;
+                    if(r[M[j][i]]!=1) 
+                    F=true;;
+                }
+                if(F)
+                col++;
+            }
+            cout<<"Case #"<<m<<": "<<k<<" "<<row<<" "<<col<<endl;
+        }
+    }
