@@ -1,0 +1,97 @@
+#include <bits/stdc++.h>
+#define ll long long
+#define f(i,j,k) for(i=j;i<k;i++)
+#define pll pair<ll,ll>
+#define vll vector<ll>
+#define vp vector<pll>
+#define vb vector<bool> 
+#define mp map<ll,pll>
+#define mll map<ll,ll>
+#define mv map<ll,vll>
+#define mi mp::iterator
+#define um unordered_map<ll,ll> 
+#define M 1000000007
+#define MAX 500001
+#define NM 998244353
+using namespace std;
+ll exp(ll s,ll r){
+    if(r==0)
+        return 1;
+    else if(r==1)
+        return s;
+    else{
+        ll m = exp(s,r/2);
+       
+        if(r%2==1)
+            return (((m*m)%M)*s)%M;
+        else
+            return (m*m)%M;
+    }
+}
+ll gcd(ll p,ll q){
+    if(p==0)
+        return q;
+       
+    return gcd(q%p,p);
+}
+bool isdigit(char p){
+    if(p>=48 && p<=57)
+        return true;
+       
+    return false;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL); 
+   ll p,n,k,i,j,a,b,c,d,x0,y,x1,y1,x2,y2;  
+   cin>>p;
+   x0=1;
+   while(x0<=p){    
+    string a;
+    cin>>a;
+    queue<char> t;
+   
+    f(i,0,10){
+        ll count = 0;
+        string temp = "";
+       
+        f(j,0,a.length()){
+            if(a[j] > i+48){
+                t.push(a[j]);
+                count++;
+            }
+            else{
+                if(count > 0){
+                   
+                    temp.push_back('(');
+                   
+                    while(count>0 && !t.empty()){
+                        temp.push_back(t.front());
+                       
+                        t.pop();
+                        count--;
+                    }
+                   
+                    temp.push_back(')');
+                }
+               
+                temp.push_back(a[j]);
+               
+            }
+        }
+        if(count > 0){
+                    temp.push_back('(');
+                    while(count>0 && !t.empty()){
+                        temp.push_back(t.front());
+                        t.pop();
+                        count--;
+                    }
+                    temp.push_back(')');
+        }  
+        a=temp;
+    } 
+    cout<<"Case #"<<x0<<": "<<a<<endl;
+    x0++;
+   }    
+    return 0; 
+}
